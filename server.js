@@ -8,6 +8,7 @@ const methodOverride = require("method-override");
 const morgan = require("morgan");
 const session = require("express-session");
 const authController = require("./controllers/auth.js");
+const listingController = require("./controllers/listing.controllers.js");
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
@@ -45,6 +46,7 @@ app.listen(port, () => {
 
 // Import routes
 app.use("/auth", authController);
+app.use("/", listingController);
 
 app.get("/", (req, res) => {
   res.render("Home", { user: req.session.user, title: "Home" });

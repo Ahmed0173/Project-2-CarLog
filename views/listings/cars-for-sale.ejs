@@ -1,0 +1,13 @@
+<%- include('../partials/head', { title: "Cars for Sale" , user: user }) %>
+
+    <h1>Cars for Sale</h1>
+
+    <p>Explore the latest cars available for sale.</p>
+    <% if (user) { %>
+        <button><a class="button" id="add-car" href="/add-car-for-sale">Add Your Car</a></button>
+    <% } else { %>
+        <p><a href="/auth/sign-up">Sign up</a> <a>or</a> <a href="/auth/sign-in">sign in</a> to add your car for sale.</p>
+    <% } %>
+    </body>
+
+    </html>
