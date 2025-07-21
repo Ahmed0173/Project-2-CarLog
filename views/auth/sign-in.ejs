@@ -1,0 +1,18 @@
+<%- include('../partials/head') %>
+
+    <main>
+        <h1>Sign In</h1>
+        <form action="/auth/sign-in" method="POST">
+            <label for="Username">Username:</label>
+            <input type="text" id="username" name="username" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Sign In</button>
+        </form>
+        <p>Don't have an account? <a href="/auth/sign-up">Sign Up</a></p>
+    </main>
+
+</body>
+</html>

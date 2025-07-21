@@ -1,0 +1,190 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+/* Header */
+header {
+    background: #333;
+    color: white;
+    padding: 1rem 0;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+}
+
+nav a {
+    color: black;
+    background: white;
+    text-decoration: none;
+    padding: 7px 12px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background 0.5s ease;
+}
+
+nav a:hover {
+    background: #b8b8b8;
+}
+
+/* Main Content */
+main {
+    max-width: 1200px;
+    margin: 20px auto;
+    background: white;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 40px;
+}
+
+/* Headings */
+h1 {
+    color: #333;
+    margin-bottom: 20px;
+    font-size: 2rem;
+}
+
+/* Paragraphs */
+p {
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+}
+
+/* Forms */
+form {
+    max-width: 400px;
+    margin: 20px 0;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    font-size: 1rem;
+}
+
+/* Button Styling for Home Page */
+button {
+    background: #667eea;
+    color: white;
+    padding: 0;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1rem;
+    margin: 10px 10px 10px 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+button:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+/* Button Links */
+.button {
+    display: block;
+    color: white !important;
+    text-decoration: none !important;
+    padding: 12px 24px;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.button:hover {
+    text-decoration: none !important;
+    color: white !important;
+}
+
+/* Specific Button IDs */
+#sign-up .button {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+#sign-in .button {
+    background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+}
+
+#view-your-cars .button {
+    background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+}
+
+#browse-cars .button {
+    background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+}
+
+/* Button Container for Home Page */
+.button-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Form Buttons (different styling for form submit buttons) */
+form button {
+    background: #333;
+    padding: 10px 20px;
+    color: white;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 1rem;
+    width: 100%;
+}
+
+form button:hover {
+    background: #555;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Links */
+a {
+    color: #333;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+

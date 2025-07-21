@@ -6,8 +6,8 @@ const app = express();
 const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 const morgan = require("morgan");
+const session = require("express-session");
 const authController = require("./controllers/auth.js");
-
 
 // Set the port from environment variable or default to 3000
 const port = process.env.PORT ? process.env.PORT : "3000";
@@ -20,6 +20,17 @@ mongoose.connection.on("connected", () => {
 
 // Set the view engine to ejs
 app.set("view engine", "ejs");
+
+// Configure sessions
+app.use(session({
+  secret: process.env.SESSION_SECRET || "your-secret-key",
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false } // Set to true in production with HTTPS
+}));
+
+// Serve static files from public directory
+app.use(express.static("public"));
 
 // Middleware to parse URL-encoded data from forms
 app.use(express.urlencoded({ extended: false }));
@@ -36,5 +47,18 @@ app.listen(port, () => {
 app.use("/auth", authController);
 
 app.get("/", (req, res) => {
-  res.render("Home");
+  res.render("Home", { user: req.session.user, title: "Home" });
+});
+
+// Your Cars route (protected - requires login)
+app.get("/your-cars", (req, res) => {
+  if (!req.session.user) {
+    return res.redirect("/auth/sign-in");
+  }
+  res.render("your-cars", { user: req.session.user, title: "Your Cars" });
+});
+
+// Cars for Sale route (public)
+app.get("/cars-for-sale", (req, res) => {
+  res.render("cars-for-sale", { user: req.session.user, title: "Cars for Sale" });
 });

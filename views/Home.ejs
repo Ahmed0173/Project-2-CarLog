@@ -1,28 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <div class="header-container">
-            <a href="/" class="logo">🚗 CarLog</a>
-            <nav>
-                <ul>
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/maintenance">Maintenance</a></li>
-                    <li><a href="/mods">Mods</a></li>
-                    <li><a href="/marketplace">Marketplace</a></li>
-                    <li><a href="/auth/sign-up">Sign Up</a></li>
-                    <li><a href="/auth/sign-in">Sign In</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <main>
+<%- include('partials/head') %>
 
+    <main>
+        <% if (user) { %>
+            <h1>Welcome back, <%= user.username %>!</h1>
+            <p>Track your car’s maintenance, showcase your mods, and explore cars for sale - all in one place.</p>
+            <button><a class="button" id="view-your-cars" href="/your-cars">View Your Cars</a></button>
+            <button><a class="button" id="browse-cars" href="/cars-for-sale">Browse Cars for Sale</a></button>
+            <% } else { %>
+                <h1>Welcome to CarLog!</h1>
+                <p>Your ultimate car management hub. Sign up to start tracking your car’s maintenance, showcasing your
+                    mods, and exploring the marketplace.</p>
+                <button><a class="button" id="sign-up" href="/auth/sign-up">Sign Up</a></button>
+                <button><a class="button" id="sign-in" href="/auth/sign-in">Sign In</a></button>
+                <button><a class="button" id="browse-cars" href="/cars-for-sale">Browse Cars for Sale</a></button>
+                <% } %>
     </main>
-</body>
-</html>
+
+    </body>
+
+    </html>
