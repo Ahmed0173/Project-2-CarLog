@@ -49,16 +49,3 @@ app.use("/auth", authController);
 app.get("/", (req, res) => {
   res.render("Home", { user: req.session.user, title: "Home" });
 });
-
-// Your Cars route (protected - requires login)
-app.get("/your-cars", (req, res) => {
-  if (!req.session.user) {
-    return res.redirect("/auth/sign-in");
-  }
-  res.render("your-cars", { user: req.session.user, title: "Your Cars" });
-});
-
-// Cars for Sale route (public)
-app.get("/cars-for-sale", (req, res) => {
-  res.render("cars-for-sale", { user: req.session.user, title: "Cars for Sale" });
-});
