@@ -55,7 +55,7 @@
                 </div>
 
                 <div class="car-actions">
-                    <% if (user) { %>
+                    <% if (user && listing.seller && user._id === listing.seller._id.toString()) { %>
                         <span class="edit-btn-container"><a href="/cars/<%= listing._id %>/edit"
                                 class="button edit-btn">Edit Listing</a></span>
                         <span class="delete-btn-container">
@@ -66,8 +66,8 @@
                                     Listing</button>
                             </form>
                         </span>
-                        <% } %>
-                            <span class="back-btn-container"><a href="/cars-for-sale" class="button back-btn">Back to
+                    <% } %>
+                    <span class="back-btn-container"><a href="/cars-for-sale" class="button back-btn">Back to
                                     All Cars</a></span>
                 </div>
             </div>
