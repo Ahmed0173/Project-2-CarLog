@@ -1,0 +1,26 @@
+<%- include('../partials/head', { title: "Edit Car Listing" , user: user }) %>
+    <h1>Edit Car Listing</h1>
+    <form action="/cars/<%= listing._id %>?_method=PUT" method="POST">
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" value="<%= listing.make %>" required>
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" value="<%= listing.model %>" required>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="<%= listing.year %>" required>
+
+        <label for="price">Price:</label>
+        <input type="number" id="price" name="price" value="<%= listing.price %>" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description"><%= listing.description || '' %></textarea>
+
+        <label for="image">Image URL:</label>
+        <input type="url" id="image" name="image" value="<%= listing.image || '' %>">
+
+        <button type="submit">Update Car</button>
+        <button><a class="button" id="cancel" href="/cars-for-sale">Cancel</a></button>
+    </form>
+</body>
+</html>

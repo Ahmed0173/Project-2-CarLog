@@ -13,7 +13,7 @@ const isSignedIn = (req, res, next) => {
 
 // VIEW ALL CARS FOR SALE
 router.get('/cars-for-sale', async (req, res) => {
-    const foundListings = await Listing.find({}).sort({ createdAt: -1 })
+    const foundListings = await Listing.find({}).populate('seller', 'username').sort({ createdAt: -1 })
     res.render('listings/cars-for-sale', {
         user: req.session.user,
         title: 'Cars for Sale',
@@ -31,13 +31,16 @@ router.get('/add-car-for-sale', isSignedIn, (req, res) => {
 
 // POST FORM DATA TO DATABASE (requires authentication)
 router.post('/cars', isSignedIn, async (req, res) => {
+    // Add the current user as the seller
+    req.body.seller = req.session.user._id
+    
     await Listing.create(req.body)
     res.redirect('/cars-for-sale')
 });
 
 // VIEW INDIVIDUAL CAR LISTING
 router.get('/cars/:id', async (req, res) => {
-    const listing = await Listing.findById(req.params.id)
+    const listing = await Listing.findById(req.params.id).populate('seller', 'username')
     if (!listing) {
         return res.status(404).send('Listing not found')
     }
@@ -81,6 +84,19 @@ router.delete('/cars/:id', isSignedIn, async (req, res) => {
     }
     await Listing.findByIdAndDelete(req.params.id)
     res.redirect('/cars-for-sale')
+});
+
+// Edit car listing details (requires authentication)
+router.get('/cars/:id/edit', isSignedIn, async (req, res) => {
+    const listing = await Listing.findById(req.params.id);
+    if (!listing) {
+        return res.status(404).send('Listing not found');
+    }
+    res.render('listings/edit', {
+        user: req.session.user,
+        title: 'Edit Car Listing',
+        listing
+    });
 });
 
 module.exports = router;

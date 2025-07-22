@@ -1,13 +1,39 @@
 <%- include('../partials/head', { title: "Cars for Sale" , user: user }) %>
 
-    <h1>Cars for Sale</h1>
+    <div class="cars-for-sale-header">
+        <h1>Cars for Sale</h1>
+        <p>Explore the latest cars available for sale.</p>
+    </div>
 
-    <p>Explore the latest cars available for sale.</p>
-    <% if (user) { %>
-        <button><a class="button" id="add-car" href="/add-car-for-sale">Add Your Car</a></button>
-    <% } else { %>
-        <p><a href="/auth/sign-up">Sign up</a> <a>or</a> <a href="/auth/sign-in">sign in</a> to add your car for sale.</p>
-    <% } %>
+    <div class="car-listings">
+        <% if (foundListings.length > 0) { %>
+            <% foundListings.forEach(listing => { %>
+                <div class="car-listing">
+                    <h2><a href="/cars/<%= listing._id %>"><%= listing.make %> <%= listing.model %> (<%= listing.year %>)</a></h2>
+                    <p><%= listing.price.toLocaleString() %> BD</p>
+                    <p><%= listing.description || "No description available." %></p>
+                    <% if (listing.image) { %>
+                        <img src="<%= listing.image %>" alt="<%= listing.make %> <%= listing.model %>" />
+                    <% } else { %>
+                        <img src="/images/default-car.jpg" alt="Default car image"/>
+                    <% } %>
+                    <p class="posted-by">Posted by: <%= listing.seller ? listing.seller.username : "Unknown" %></p>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <div class="no-cars-message">
+                <p>No cars available for sale at the moment.</p>
+            </div>
+        <% } %>
+    </div>
+    
+    <div class="add-car-section">
+        <% if (user) { %>
+            <button><a class="button" id="add-car" href="/add-car-for-sale">Add Your Car</a></button>
+        <% } else { %>
+            <p><a href="/auth/sign-up">Sign up</a> or <a href="/auth/sign-in">sign in</a> to add your car for sale.</p>
+        <% } %>
+    </div>
     </body>
 
     </html>

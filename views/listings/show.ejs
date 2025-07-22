@@ -1,0 +1,79 @@
+<%- include('../partials/head', { title: "Car Details" , user: user }) %>
+
+    <div class="car-detail-container">
+        <div class="car-detail-header">
+            <h1>
+                <%= listing.make %>
+                    <%= listing.model %> (<%= listing.year %>)
+            </h1>
+            <div class="car-price">
+                <%= listing.price.toLocaleString() %> BD
+            </div>
+        </div>
+
+        <div class="car-detail-content">
+            <div class="car-image-section">
+                <% if (listing.image) { %>
+                    <a href="<%= listing.image %>">
+                        <img src="<%= listing.image %>" alt="<%= listing.make %> <%= listing.model %>"
+                            class="car-detail-image" />
+                    </a>
+                    <% } else { %>
+                        <img src="/images/default-car.jpg" alt="Default car image" class="car-detail-image" />
+                        <% } %>
+            </div>
+
+            <div class="car-info-section">
+                <h2>Description</h2>
+                <p class="car-description">
+                    <%= listing.description || "No description available." %>
+                </p>
+
+                <div class="car-specs">
+                    <h2>Specifications</h2>
+                    <div class="spec-grid">
+                        <div class="spec-item">
+                            <strong>Make:</strong>
+                            <%= listing.make %>
+                        </div>
+                        <div class="spec-item">
+                            <strong>Model:</strong>
+                            <%= listing.model %>
+                        </div>
+                        <div class="spec-item">
+                            <strong>Year:</strong>
+                            <%= listing.year %>
+                        </div>
+                        <div class="spec-item">
+                            <strong>Price:</strong>
+                            <%= listing.price.toLocaleString() %> BD
+                        </div>
+                        <div class="spec-item">
+                            <strong>Posted By:</strong>
+                            <%= listing.seller ? listing.seller.username : "Unknown" %>
+                        </div>
+                </div>
+
+                <div class="car-actions">
+                    <% if (user) { %>
+                        <span class="edit-btn-container"><a href="/cars/<%= listing._id %>/edit"
+                                class="button edit-btn">Edit Listing</a></span>
+                        <span class="delete-btn-container">
+                            <form action="/cars/<%= listing._id %>?_method=DELETE" method="POST"
+                                style="display: inline;">
+                                <button type="submit" class="button delete-btn"
+                                    onclick="return confirm('Are you sure you want to delete this listing?')">Delete
+                                    Listing</button>
+                            </form>
+                        </span>
+                        <% } %>
+                            <span class="back-btn-container"><a href="/cars-for-sale" class="button back-btn">Back to
+                                    All Cars</a></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </body>
+
+    </html>
