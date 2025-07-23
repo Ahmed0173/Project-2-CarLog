@@ -30,6 +30,10 @@ const yourCarSchema = new mongoose.Schema({
         ref: 'User',
         required: true,
     },
+    contactInfo: {
+        type: String,
+        required: true,
+    },
 }, {
     timestamps: true
 });

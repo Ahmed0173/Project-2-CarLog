@@ -18,9 +18,9 @@
                         <img src="<%= listing.image %>" alt="<%= listing.make %> <%= listing.model %>"
                             class="car-detail-image" />
                     </a>
-                    <% } else { %>
-                        <img src="/images/default-car.jpg" alt="Default car image" class="car-detail-image" />
-                        <% } %>
+                <% } else { %>
+                    <img src="/images/default-car.jpg" alt="Default car image" class="car-detail-image" />
+                <% } %>
             </div>
 
             <div class="car-info-section">
@@ -52,6 +52,10 @@
                             <strong>Posted By:</strong>
                             <%= listing.seller ? listing.seller.username : "Unknown" %>
                         </div>
+                        <div class="spec-item">
+                            <strong>Contact Info:</strong>
+                            <%= listing.contactInfo || "No contact information available." %>
+                        </div>
                 </div>
 
                 <div class="car-actions">
@@ -72,7 +76,33 @@
                 </div>
             </div>
         </div>
-    </div>
+        <!-- Comments Section -->
+        <div class="comments-section">
+            <h2>Comments</h2>
+            <% if (comments.length > 0) { %>
+                <ul class="comments-list">
+                    <% comments.forEach(comment => { %>
+                        <li class="comment-item">
+                            <p class="comment-content"><%= comment.content %></p>
+                            <p class="comment-author">Posted by: <%= comment.author.username %></p>
+                            <p class="comment-date">
+                                <%= new Date(comment.createdAt).toLocaleDateString() %>
+                            </p>
+                        </li>
+                    <% }) %>
+                </ul>
+            <% } else { %>
+                <p class="no-comments">No comments yet. Be the first to comment!</p>
+            <% } %>
+            <% if (user) { %>
+                <form action="/cars/<%= listing._id %>/comments" method="POST" class="comment-form">
+                    <textarea name="content" placeholder="Add a comment..." required></textarea>
+                    <button type="submit" class="button comment-submit">Post Comment</button>
+                </form>
+            <% } else { %>
+                <p class="login-prompt">Please <a href="/auth/sign-in">sign in</a> to post a comment.</p>
+            <% } %>
+        </div>
 
     </body>
 
