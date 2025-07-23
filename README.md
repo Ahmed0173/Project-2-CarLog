@@ -1,5 +1,6 @@
 🚗 CarLog – Car Marketplace & Garage Manager
-<!-- Screenshot will go here -->
+
+![CarLog Screenshot](screenshot.png)
 
 🕹️ Description
 
@@ -7,14 +8,14 @@ CarLog is a full-stack web application built with Node.js, Express, MongoDB, and
 
 Features:
 
-• Complete car marketplace with listings and comments
-• Personal garage management system
-• Maintenance tracking with cost analysis
-• Modification documentation with categories
-• Image upload support
-• User authentication and access control
+1. Complete car marketplace with listings and comments
+2. Personal garage management system
+3. Maintenance tracking with cost analysis
+4. Modification documentation with categories
+5. Image upload support
+6. User authentication and access control
 
-� Getting Started
+ Getting Started
 
 Run locally:
 1. Clone the repository
