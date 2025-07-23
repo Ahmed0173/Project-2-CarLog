@@ -15,7 +15,7 @@ Features:
 5. Image upload support
 6. User authentication and access control
 
- Getting Started
+Getting Started
 
 Run locally:
 1. Clone the repository
@@ -29,7 +29,7 @@ Planning Materials:
 • [Database Schema](#)
 • [Route Planning](#)
 
-🎮 How to Use
+How to Use
 
 1. **Sign Up/Login** to access the platform
 2. **Browse Marketplace** to view cars for sale
@@ -38,7 +38,7 @@ Planning Materials:
 5. **Document Modifications** and upgrades
 6. **Comment & Connect** with other users
 
-� Technologies Used
+Technologies Used
 
 • **Backend**: Node.js, Express.js, MongoDB, Mongoose
 • **Frontend**: EJS, HTML5, CSS3, JavaScript
