@@ -24,6 +24,8 @@ Run locally:
 4. Start the server: `npm start`
 5. Visit: http://localhost:3000
 
+or from the deployed link: https://carlog-ahmed-2025-57171220c797.herokuapp.com/cars/6880b89d06d16467a94a5a65
+
 Planning Materials:
 • [User Stories](#)
 • [Database Schema](#)
