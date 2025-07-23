@@ -1,0 +1,285 @@
+<%- include('../partials/head', { title: car.make + " " + car.model + " - Details" , user: user }) %>
+
+    <div class="garage-car-detail-container">
+        <div class="garage-car-header">
+            <div class="car-title">
+                <h1>
+                    <%= car.make %>
+                        <%= car.model %> (<%= car.year %>)
+                </h1>
+                <p class="car-subtitle">Personal Garage Vehicle</p>
+            </div>
+            <div class="car-actions">
+                <a href="/show.MyCars" class="button back-btn">Back to Garage</a>
+                <a href="/my-cars/<%= car._id %>/edit" class="button edit-btn">Edit Car Info</a>
+                <button type="button" class="button delete-btn" onclick="showDeleteModal()">Delete Car</button>
+            </div>
+        </div>
+
+        <div class="garage-car-content">
+            <div class="car-image-section">
+                <% if (car.image) { %>
+                    <img src="<%= car.image %>" alt="<%= car.make %> <%= car.model %>" class="garage-detail-image">
+                    <% } else { %>
+                        <div class="no-image-placeholder-large">
+                            <span>📷</span>
+                            <p>No Image Available</p>
+                        </div>
+                        <% } %>
+            </div>
+
+            <div class="car-info-section">
+                <div class="car-basic-info">
+                    <h2>Vehicle Information</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <strong>Make:</strong>
+                            <%= car.make %>
+                        </div>
+                        <div class="info-item">
+                            <strong>Model:</strong>
+                            <%= car.model %>
+                        </div>
+                        <div class="info-item">
+                            <strong>Year:</strong>
+                            <%= car.year %>
+                        </div>
+                        <div class="info-item">
+                            <strong>Added to Garage:</strong>
+                            <%= new Date(car.createdAt).toLocaleDateString() %>
+                        </div>
+                    </div>
+                </div>
+
+                <% if (car.description) { %>
+                    <div class="car-description-section">
+                        <h2>Description</h2>
+                        <p class="description-text">
+                            <%= car.description %>
+                        </p>
+                    </div>
+                    <% } %>
+            </div>
+        </div>
+
+        <!-- Maintenance Tracking Section -->
+        <div class="maintenance-section">
+            <div class="section-header">
+                <h2>🔧 Maintenance Log</h2>
+                <button class="button add-maintenance-btn" onclick="showMaintenanceForm()">Add Maintenance</button>
+            </div>
+
+            <div id="maintenance-form" class="maintenance-form" style="display: none;">
+                <h3>Add Maintenance Record</h3>
+                <form action="/my-cars/<%= car._id %>/maintenance" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="maintenance-date">Date:</label>
+                            <input type="date" id="maintenance-date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="maintenance-type">Type:</label>
+                            <select id="maintenance-type" name="type" required>
+                                <option value="">Select Type</option>
+                                <option value="Oil Change">Oil Change</option>
+                                <option value="Tire Replacement">Tire Replacement</option>
+                                <option value="Brake Service">Brake Service</option>
+                                <option value="Engine Repair">Engine Repair</option>
+                                <option value="Transmission Service">Transmission Service</option>
+                                <option value="General Service">General Service</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="maintenance-cost">Cost:</label>
+                            <input type="number" id="maintenance-cost" name="cost" step="0.01" placeholder="0.00">
+                        </div>
+                        <div class="form-group">
+                            <label for="maintenance-mileage">Mileage:</label>
+                            <input type="number" id="maintenance-mileage" name="mileage" placeholder="Current mileage">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="maintenance-description">Description:</label>
+                        <textarea id="maintenance-description" name="description"
+                            placeholder="Details about the maintenance..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="button submit-btn">Add Record</button>
+                        <button type="button" class="button cancel-btn" onclick="hideMaintenanceForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="maintenance-list">
+                <% if (car.maintenanceLog && car.maintenanceLog.length > 0) { %>
+                    <% car.maintenanceLog.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(record => { %>
+                        <div class="maintenance-record">
+                            <div class="record-header">
+                                <h4><%= record.type %></h4>
+                                <span class="record-date"><%= new Date(record.date).toLocaleDateString() %></span>
+                            </div>
+                            <div class="record-details">
+                                <% if (record.description) { %>
+                                    <p class="record-description"><%= record.description %></p>
+                                <% } %>
+                                <div class="record-meta">
+                                    <% if (record.cost > 0) { %>
+                                        <span class="record-cost">Cost: <%= record.cost.toFixed(2) %> BD</span>
+                                    <% } %>
+                                    <% if (record.mileage > 0) { %>
+                                        <span class="record-mileage">Mileage: <%= record.mileage.toLocaleString() %></span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p class="no-records">No maintenance records yet. Add your first record above!</p>
+                <% } %>
+            </div>
+        </div>
+
+        <!-- Modifications Section -->
+        <div class="modifications-section">
+            <div class="section-header">
+                <h2>⚡ Modifications & Upgrades</h2>
+                <button class="button add-mod-btn" onclick="showModForm()">Add Modification</button>
+            </div>
+
+            <div id="mod-form" class="mod-form" style="display: none;">
+                <h3>Add Modification</h3>
+                <form action="/my-cars/<%= car._id %>/modifications" method="POST">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mod-date">Date:</label>
+                            <input type="date" id="mod-date" name="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mod-category">Category:</label>
+                            <select id="mod-category" name="category" required>
+                                <option value="">Select Category</option>
+                                <option value="Engine">Engine</option>
+                                <option value="Suspension">Suspension</option>
+                                <option value="Exterior">Exterior</option>
+                                <option value="Interior">Interior</option>
+                                <option value="Wheels">Wheels & Tires</option>
+                                <option value="Exhaust">Exhaust</option>
+                                <option value="Electronics">Electronics</option>
+                                <option value="Other">Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="mod-name">Modification Name:</label>
+                            <input type="text" id="mod-name" name="name" placeholder="e.g., Cold Air Intake" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mod-cost">Cost:</label>
+                            <input type="number" id="mod-cost" name="cost" step="0.01" placeholder="0.00">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mod-description">Description:</label>
+                        <textarea id="mod-description" name="description"
+                            placeholder="Details about the modification..."></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="button submit-btn">Add Modification</button>
+                        <button type="button" class="button cancel-btn" onclick="hideModForm()">Cancel</button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="modifications-list">
+                <% if (car.modifications && car.modifications.length > 0) { %>
+                    <% car.modifications.sort((a, b) => new Date(b.date) - new Date(a.date)).forEach(mod => { %>
+                        <div class="modification-record">
+                            <div class="record-header">
+                                <h4><%= mod.name %></h4>
+                                <span class="record-category"><%= mod.category %></span>
+                                <span class="record-date"><%= new Date(mod.date).toLocaleDateString() %></span>
+                            </div>
+                            <div class="record-details">
+                                <% if (mod.description) { %>
+                                    <p class="record-description"><%= mod.description %></p>
+                                <% } %>
+                                <div class="record-meta">
+                                    <% if (mod.cost > 0) { %>
+                                        <span class="record-cost">Cost: <%= mod.cost.toFixed(2) %> BD</span>
+                                    <% } %>
+                                </div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } else { %>
+                    <p class="no-records">No modifications yet. Add your first mod above!</p>
+                <% } %>
+            </div>
+        </div>
+    </div>
+
+    <!-- Delete Car Modal -->
+    <div id="deleteCarModal" class="modal">
+        <div class="modal-content">
+            <h3>Delete Car from Garage</h3>
+            <p>Are you sure you want to remove this car from your garage? This will also delete all maintenance records and modifications. This action cannot be undone.</p>
+            <div class="modal-actions">
+                <form action="/my-cars/<%= car._id %>?_method=DELETE" method="POST" style="display: inline;">
+                    <button type="submit" class="modal-btn modal-btn-danger">Delete Car</button>
+                </form>
+                <button type="button" class="modal-btn modal-btn-secondary" onclick="hideDeleteModal()">Cancel</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showMaintenanceForm() {
+            document.getElementById('maintenance-form').style.display = 'block';
+        }
+
+        function hideMaintenanceForm() {
+            document.getElementById('maintenance-form').style.display = 'none';
+        }
+
+        function showModForm() {
+            document.getElementById('mod-form').style.display = 'block';
+        }
+
+        function hideModForm() {
+            document.getElementById('mod-form').style.display = 'none';
+        }
+
+        function showDeleteModal() {
+            document.getElementById('deleteCarModal').classList.add('active');
+        }
+
+        function hideDeleteModal() {
+            document.getElementById('deleteCarModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('deleteCarModal');
+            if (event.target === modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModal = document.querySelector('.modal.active');
+                if (activeModal) {
+                    activeModal.classList.remove('active');
+                }
+            }
+        });
+    </script>
+
+    </body>
+
+    </html>

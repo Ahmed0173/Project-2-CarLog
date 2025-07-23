@@ -1,0 +1,61 @@
+<%- include('../partials/head', { title: "My Cars" , user: user }) %>
+
+    <div class="garage-container">
+        <div class="garage-header">
+            <h1>My Car Garage</h1>
+            <p>Track your car's maintenance, showcase your modifications, and manage your automotive projects.</p>
+            <div class="garage-actions">
+                <a href="/add-car-to-garage" class="button add-car-btn">Add Car to Garage</a>
+            </div>
+        </div>
+
+        <% if (userCars && userCars.length> 0) { %>
+            <div class="garage-grid">
+                <% userCars.forEach(car=> { %>
+                    <div class="garage-car-card">
+                        <div class="car-image-container">
+                            <% if (car.image) { %>
+                                <img src="<%= car.image %>" alt="<%= car.make %> <%= car.model %>"
+                                    class="garage-car-image">
+                                <% } else { %>
+                                    <div class="no-image-placeholder">
+                                        <span>📷</span>
+                                        <p>No Image</p>
+                                    </div>
+                                    <% } %>
+                        </div>
+
+                        <div class="car-info">
+                            <h3>
+                                <%= car.make %>
+                                    <%= car.model %>
+                            </h3>
+                            <p class="car-year">Year: <%= car.year %>
+                            </p>
+                            <% if (car.description) { %>
+                                <p class="car-description">
+                                    <%= car.description.substring(0, 100) %>
+                                </p>
+                                <% } %>
+                                    <div class="garage-car-actions">
+                                        <a href="/my-cars/<%= car._id %>" class="button view-btn">View Details</a>
+                                        <a href="/my-cars/<%= car._id %>/edit" class="button edit-btn">Edit</a>
+                                    </div>
+                        </div>
+                    </div>
+                    <% }) %>
+            </div>
+            <% } else { %>
+                <div class="empty-garage">
+                    <div class="empty-garage-content">
+                        <h2>Your Garage is Empty</h2>
+                        <p>Start building your digital garage by adding your first car!</p>
+                        <a href="/add-car-to-garage" class="button add-first-car-btn">Add Your First Car</a>
+                    </div>
+                </div>
+                <% } %>
+    </div>
+
+    </body>
+
+    </html>

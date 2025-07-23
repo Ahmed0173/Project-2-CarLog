@@ -1,0 +1,35 @@
+<%- include('../partials/head', { title: "Edit " + car.make + " " + car.model , user: user }) %>
+
+<div class="form-page">
+    <h1>Edit Your Car</h1>
+    <p>Update your car's information in your garage.</p>
+    
+    <form action="/my-cars/<%= car._id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" value="<%= car.make %>" placeholder="Enter car make" required>
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" value="<%= car.model %>" placeholder="Enter car model" required>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" value="<%= car.year %>" placeholder="Enter car year" min="1900" max="2025" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Tell us about your car - current condition, plans, build goals..."><%= car.description || '' %></textarea>
+
+        <div class="image-options">
+            <label for="image-file">Upload New Image:</label>
+            <input type="file" id="image-file" name="image" accept="image/*">
+            <small style="color: #666; font-size: 0.9rem;">Leave both blank to keep current image</small>
+        </div>
+
+        <div class="form-actions">
+            <button type="submit">Update Car</button>
+            <a class="button" href="/my-cars/<%= car._id %>">Cancel</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
+

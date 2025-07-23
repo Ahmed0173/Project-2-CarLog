@@ -886,3 +886,568 @@ a:hover {
     background: #5a6268;
     transform: translateY(-2px);
 }
+
+/* Garage Styles */
+.garage-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.garage-header {
+    text-align: center;
+    padding: 40px 20px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border-radius: 12px;
+    margin-bottom: 30px;
+}
+
+.garage-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.garage-header p {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+}
+
+.garage-actions {
+    margin-top: 20px;
+}
+
+.add-car-btn, .add-first-car-btn {
+    background: #28a745;
+    color: white;
+    padding: 12px 30px;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.add-car-btn:hover, .add-first-car-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+    text-decoration: none;
+    color: white;
+}
+
+/* Garage Grid */
+.garage-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.garage-car-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.garage-car-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
+.car-image-container {
+    height: 200px;
+    overflow: hidden;
+    background: #f8f9fa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.garage-car-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image-placeholder {
+    text-align: center;
+    color: #6c757d;
+}
+
+.no-image-placeholder span {
+    font-size: 3rem;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.car-info {
+    padding: 20px;
+}
+
+.car-info h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.car-year {
+    color: #666;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.car-description {
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 15px;
+}
+
+.car-stats {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.stat {
+    background: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 15px;
+    font-size: 0.8rem;
+    color: #495057;
+}
+
+.garage-car-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.view-btn {
+    background: #007bff;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: bold;
+    flex: 1;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.view-btn:hover {
+    background: #0056b3;
+    text-decoration: none;
+    color: white;
+}
+
+/* Empty Garage */
+.empty-garage {
+    text-align: center;
+    padding: 80px 20px;
+    background: white;
+    border-radius: 12px;
+    border: 2px dashed #dee2e6;
+    margin: 20px 0;
+}
+
+.empty-garage-content h2 {
+    color: #6c757d;
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.empty-garage-content p {
+    color: #868e96;
+    margin-bottom: 25px;
+    font-size: 1.1rem;
+}
+
+/* Garage Car Detail Page Styles */
+.garage-car-detail-container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.garage-car-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px 0;
+    border-bottom: 2px solid #eee;
+    margin-bottom: 30px;
+}
+
+.car-title h1 {
+    font-size: 2.5rem;
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.car-subtitle {
+    color: #666;
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.garage-car-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    margin-bottom: 40px;
+}
+
+.garage-detail-image {
+    width: 100%;
+    max-width: 500px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 12px;
+    border: 1px solid #ddd;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.no-image-placeholder-large {
+    width: 100%;
+    height: 300px;
+    background: #f8f9fa;
+    border: 2px dashed #dee2e6;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: #6c757d;
+}
+
+.no-image-placeholder-large span {
+    font-size: 4rem;
+    margin-bottom: 10px;
+}
+
+.car-basic-info h2 {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 10px;
+}
+
+.info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.info-item {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #e9ecef;
+}
+
+.info-item strong {
+    color: #2c3e50;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.car-description-section {
+    margin-top: 30px;
+}
+
+.car-description-section h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+    border-bottom: 2px solid #3498db;
+    padding-bottom: 5px;
+}
+
+.description-text {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #555;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+    border-left: 4px solid #3498db;
+}
+
+/* Maintenance and Modifications Sections */
+.maintenance-section, .modifications-section {
+    margin-top: 40px;
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border: 1px solid #e9ecef;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-header h2 {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin: 0;
+}
+
+.add-maintenance-btn, .add-mod-btn {
+    background: #28a745;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.add-maintenance-btn:hover, .add-mod-btn:hover {
+    background: #218838;
+    transform: translateY(-2px);
+}
+
+.maintenance-form, .mod-form {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    border: 1px solid #e1e8ed;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    font-weight: bold;
+    color: #2c3e50;
+    margin-bottom: 5px;
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 10px;
+    border: 2px solid #e1e8ed;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.form-group textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.submit-btn {
+    background: #3498db;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.submit-btn:hover {
+    background: #2980b9;
+}
+
+.cancel-btn {
+    background: #6c757d;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.cancel-btn:hover {
+    background: #5a6268;
+}
+
+.no-records {
+    text-align: center;
+    color: #666;
+    font-style: italic;
+    padding: 30px;
+    background: white;
+    border-radius: 8px;
+    border: 2px dashed #e1e8ed;
+}
+
+/* Maintenance and Modification Record Styles */
+.maintenance-record, .modification-record {
+    background: white;
+    border: 1px solid #e1e8ed;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.maintenance-record:hover, .modification-record:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.record-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #e1e8ed;
+}
+
+.record-header h4 {
+    color: #2c3e50;
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.record-date {
+    color: #666;
+    font-size: 0.9rem;
+    background: #f8f9fa;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.record-category {
+    background: #3498db;
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.record-description {
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
+}
+
+.record-meta {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.record-cost, .record-mileage {
+    background: #f8f9fa;
+    color: #2c3e50;
+    padding: 6px 10px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border: 1px solid #e1e8ed;
+}
+
+.record-cost {
+    color: #e74c3c;
+}
+
+.record-mileage {
+    color: #8e44ad;
+}
+
+.maintenance-list, .modifications-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.maintenance-list::-webkit-scrollbar, .modifications-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.maintenance-list::-webkit-scrollbar-track, .modifications-list::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 3px;
+}
+
+.maintenance-list::-webkit-scrollbar-thumb, .modifications-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.maintenance-list::-webkit-scrollbar-thumb:hover, .modifications-list::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .garage-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+    
+    .garage-header h1 {
+        font-size: 2rem;
+    }
+    
+    .garage-car-actions {
+        flex-direction: column;
+    }
+    
+    .garage-car-header {
+        flex-direction: column;
+        text-align: center;
+        gap: 20px;
+    }
+    
+    .garage-car-content {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .car-actions {
+        flex-direction: column;
+        gap: 10px;
+    }
+}

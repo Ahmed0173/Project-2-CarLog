@@ -1,0 +1,31 @@
+<%- include('../partials/head', { title: "Add a Car" , user: user }) %>
+
+<div class="form-page">
+    <h1>Add Car to Your Garage</h1>
+    <p>Add a car to track maintenance, modifications, and build progress.</p>
+    
+    <form action="/add-car-to-garage" method="POST" enctype="multipart/form-data">
+        <label for="make">Make:</label>
+        <input type="text" id="make" name="make" placeholder="Enter car make (e.g., Toyota, BMW)" required>
+
+        <label for="model">Model:</label>
+        <input type="text" id="model" name="model" placeholder="Enter car model (e.g., Camry, M3)" required>
+
+        <label for="year">Year:</label>
+        <input type="number" id="year" name="year" placeholder="Enter car year" min="1900" max="2025" required>
+
+        <label for="description">Description:</label>
+        <textarea id="description" name="description" placeholder="Tell us about your car - current condition, plans, build goals..."></textarea>
+
+        <label for="image">Upload Car Image:</label>
+        <input type="file" id="image" name="image" accept="image/*">
+
+        <div class="form-actions">
+            <button type="submit">Add to Garage</button>
+            <a class="button" href="/show.MyCars">Cancel</a>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

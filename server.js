@@ -10,6 +10,7 @@ const session = require("express-session");
 const authController = require("./controllers/auth.js");
 const listingController = require("./controllers/listing.controllers.js");
 const commentController = require("./controllers/comment.controller.js");
+const myCarsController = require("./controllers/MyCars.controllers.js");
 const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
@@ -53,6 +54,7 @@ app.listen(port, () => {
 app.use("/auth", authController);
 app.use("/", listingController);
 app.use("/", commentController);
+app.use("/", myCarsController);
 
 app.get("/", (req, res) => {
   res.render("Home", { title: "Home" });
