@@ -28,7 +28,7 @@ router.delete('/comments/:commentId', isSignedIn, async (req, res) => {
 
         const listingId = comment.listing
         await Comment.findByIdAndDelete(req.params.commentId)
-        res.redirect(`/listings/${listingId}`)
+        res.redirect(`/cars/${listingId}`)
     } catch (error) {
         console.error('Error deleting comment:', error)
         res.status(500).send('Error deleting comment')

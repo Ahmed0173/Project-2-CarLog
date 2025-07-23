@@ -120,7 +120,7 @@ button:hover {
 
 /* Button Links */
 .button {
-    display: block;
+    display:block;
     color: white !important;
     text-decoration: none !important;
     padding: 12px 24px;
@@ -468,13 +468,17 @@ a:hover {
 }
 
 .car-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 15px;
     margin-top: 30px;
     padding-top: 20px;
     border-top: 1px solid #eee;
 }
 
-.car-actions .button {
+.car-actions .button,
+.car-actions button {
     text-align: center;
     padding: 12px 24px;
     border-radius: 8px;
@@ -482,6 +486,8 @@ a:hover {
     border: none;
     cursor: pointer;
     transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
 }
 
 .edit-btn {
@@ -757,23 +763,126 @@ a:hover {
     margin-top: 10px;
 }
 
-/* Responsive Form Design */
-@media (max-width: 768px) {
-    .form-page {
-        margin: 10px;
-        padding: 20px;
+/* Comment Header Layout */
+.comment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.comment-header .comment-author,
+.comment-header .comment-date {
+    margin: 0;
+}
+
+/* Delete Comment Button */
+.btn-delete-comment {
+    background: #dc3545;
+    color: white;
+    border: none;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+}
+
+.btn-delete-comment:hover {
+    background: #c82333;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(220, 53, 69, 0.3);
+}
+
+/* Confirmation Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(5px);
+}
+
+.modal.active {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    animation: modalSlideIn 0.3s ease-out;
+}
+
+@keyframes modalSlideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-50px) scale(0.9);
     }
-    
-    .form-page h1 {
-        font-size: 1.5rem;
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
     }
-    
-    .form-actions {
-        flex-direction: column;
-    }
-    
-    .form-page button {
-        margin-right: 0;
-        margin-bottom: 10px;
-    }
+}
+
+.modal-content h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+}
+
+.modal-content p {
+    color: #666;
+    margin-bottom: 25px;
+    line-height: 1.5;
+}
+
+.modal-actions {
+    gap: 15px;
+    justify-content: center;
+}
+
+.modal-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+    min-width: 80px;
+}
+
+.modal-btn-danger {
+    background: #dc3545;
+    color: white;
+}
+
+.modal-btn-danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+.modal-btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.modal-btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-2px);
 }
